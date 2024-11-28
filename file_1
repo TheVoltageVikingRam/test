@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Display the Linux kernel version
+echo "Kernel Information:"
+uname -a
+
+# Display the kernel version
+echo -e "\nKernel Version:"
+uname -r
+
+# Display CPU type (architecture)
+echo -e "\nCPU Type:"
+uname -m
+
+# Display detailed CPU information
+echo -e "\nCPU Information:"
+grep -m 1 "model name" /proc/cpuinfo | awk -F: '{print $2}' | sed 's/^ //'
+
+# Display number of cores
+echo -e "\nNumber of CPU Cores:"
+grep -c "processor" /proc/cpuinfo
