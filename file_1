@@ -19,3 +19,235 @@ grep -m 1 "model name" /proc/cpuinfo | awk -F: '{print $2}' | sed 's/^ //'
 # Display number of cores
 echo -e "\nNumber of CPU Cores:"
 grep -c "processor" /proc/cpuinfo
+
+Scheduling algorithms are critical in operating systems and computer science for managing processes and resources efficiently. Here are the primary types of scheduling algorithms:
+
+1. First-Come, First-Served (FCFS)
+
+Description: Processes are executed in the order they arrive in the ready queue.
+
+Advantages:
+
+Simple and easy to implement.
+
+Fair to processes since they are scheduled in the order of arrival.
+
+
+Disadvantages:
+
+Non-preemptive, which can lead to poor CPU utilization.
+
+Can cause the convoy effect, where shorter processes wait for longer processes to finish.
+
+
+
+
+---
+
+2. Shortest Job Next (SJN) / Shortest Job First (SJF)
+
+Description: Processes with the shortest execution time are scheduled first.
+
+Types:
+
+Non-preemptive: Once a process starts, it cannot be interrupted.
+
+Preemptive (Shortest Remaining Time First - SRTF): The scheduler can interrupt the current process if a shorter one arrives.
+
+
+Advantages:
+
+Minimizes average waiting time.
+
+
+Disadvantages:
+
+Difficult to predict process execution times.
+
+Starvation of longer processes.
+
+
+
+
+---
+
+3. Round Robin (RR)
+
+Description: Each process is assigned a fixed time slice (quantum). If a process doesn't finish in its quantum, it goes to the back of the queue.
+
+Advantages:
+
+Fair, as all processes get an equal share of CPU time.
+
+Good for time-sharing systems.
+
+
+Disadvantages:
+
+Performance depends on the time quantum. Too small → context switching overhead; too large → behaves like FCFS.
+
+
+
+
+---
+
+4. Priority Scheduling
+
+Description: Processes are scheduled based on priority. Higher-priority processes execute first.
+
+Types:
+
+Preemptive: A higher-priority process can preempt a running process.
+
+Non-preemptive: A higher-priority process waits until the CPU is free.
+
+
+Advantages:
+
+Allows critical tasks to execute quickly.
+
+
+Disadvantages:
+
+Can lead to starvation of lower-priority processes.
+
+Requires an effective method for determining priorities.
+
+
+
+
+---
+
+5. Multilevel Queue Scheduling
+
+Description: Processes are classified into different queues based on priority or type (e.g., system processes, interactive processes). Each queue has its scheduling algorithm.
+
+Advantages:
+
+Specialized handling of different types of processes.
+
+
+Disadvantages:
+
+Complex to implement.
+
+Requires proper queue classification.
+
+
+
+
+---
+
+6. Multilevel Feedback Queue Scheduling
+
+Description: An extension of multilevel queue scheduling where processes can move between queues based on their behavior and requirements.
+
+Advantages:
+
+Dynamic and adjusts to process needs.
+
+Reduces starvation.
+
+
+Disadvantages:
+
+Highly complex to implement.
+
+
+
+
+---
+
+7. Shortest Remaining Time First (SRTF)
+
+Description: A preemptive version of SJF. The process with the shortest remaining time is scheduled.
+
+Advantages:
+
+Optimal for minimizing average waiting time.
+
+
+Disadvantages:
+
+Requires precise knowledge of remaining times.
+
+Starvation is possible for longer processes.
+
+
+
+
+---
+
+8. Earliest Deadline First (EDF)
+
+Description: A dynamic scheduling algorithm where the process closest to its deadline is executed first. Commonly used in real-time systems.
+
+Advantages:
+
+Optimal for scheduling real-time tasks.
+
+
+Disadvantages:
+
+Overhead of tracking deadlines.
+
+
+
+
+---
+
+9. Longest Job First (LJF)
+
+Description: Processes with the longest execution times are scheduled first.
+
+Advantages:
+
+Efficient for processes requiring consistent resource usage.
+
+
+Disadvantages:
+
+Leads to starvation of shorter processes.
+
+Not commonly used.
+
+
+
+
+---
+
+10. Weighted Round Robin (WRR)
+
+Description: An extension of Round Robin where processes are assigned weights, and CPU time is distributed proportionally to these weights.
+
+Advantages:
+
+Balances fairness with priority.
+
+
+Disadvantages:
+
+Adds complexity in weight calculation.
+
+
+
+
+---
+
+11. Fair-Share Scheduling
+
+Description: Distributes CPU time equally among users or groups rather than processes.
+
+Advantages:
+
+Ensures fairness at the user/group level.
+
+
+Disadvantages:
+
+May not be efficient for processes with unequal demands.
+
+
+
+Each algorithm has its use case depending on the system requirements, such as throughput, fairness, latency, and deadline constraints.
+
